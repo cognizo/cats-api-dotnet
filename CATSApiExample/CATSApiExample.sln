@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CATSApiExample", "CATSApiExample\CATSApiExample.csproj", "{C984609B-094D-4115-A152-EA28A392748F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CATSApi", "..\CATSApi\CATSApi\CATSApi.csproj", "{1D867BD1-762C-4758-9C85-1C118E603070}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D867BD1-762C-4758-9C85-1C118E603070}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1D867BD1-762C-4758-9C85-1C118E603070}.Debug|x86.Build.0 = Debug|Any CPU
+		{1D867BD1-762C-4758-9C85-1C118E603070}.Release|x86.ActiveCfg = Release|Any CPU
+		{1D867BD1-762C-4758-9C85-1C118E603070}.Release|x86.Build.0 = Release|Any CPU
+		{C984609B-094D-4115-A152-EA28A392748F}.Debug|x86.ActiveCfg = Debug|x86
+		{C984609B-094D-4115-A152-EA28A392748F}.Debug|x86.Build.0 = Debug|x86
+		{C984609B-094D-4115-A152-EA28A392748F}.Release|x86.ActiveCfg = Release|x86
+		{C984609B-094D-4115-A152-EA28A392748F}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = CATSApiExample\CATSApiExample.csproj
+	EndGlobalSection
+EndGlobal

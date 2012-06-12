@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1D867BD1-762C-4758-9C85-1C118E603070}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CATS</RootNamespace>
+    <AssemblyName>CATSApi</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Response.cs" />
+    <Compile Include="CATSApi.cs" />
+    <Compile Include="AddAttachmentResponse.cs" />
+    <Compile Include="UpdateAttachmentResponse.cs" />
+    <Compile Include="AddActivityResponse.cs" />
+    <Compile Include="AddCandidateRequest.cs" />
+    <Compile Include="GetCandidateResponse.cs" />
+    <Compile Include="AddCandidateResponse.cs" />
+    <Compile Include="AddCompanyRequest.cs" />
+    <Compile Include="AddCompanyResponse.cs" />
+    <Compile Include="AddContactResponse.cs" />
+    <Compile Include="AddContactRequest.cs" />
+    <Compile Include="AddEmailActivityResponse.cs" />
+    <Compile Include="AddJoborderResponse.cs" />
+    <Compile Include="AddJoborderRequest.cs" />
+    <Compile Include="AddPipelineResponse.cs" />
+    <Compile Include="AddQuickNoteResponse.cs" />
+    <Compile Include="DeleteCandidateResponse.cs" />
+    <Compile Include="DeleteCompanyResponse.cs" />
+    <Compile Include="DeleteContactResponse.cs" />
+    <Compile Include="DeleteJoborderResponse.cs" />
+    <Compile Include="GetActivitiesResponse.cs" />
+    <Compile Include="GetItemsResponse.cs" />
+    <Compile Include="Activity.cs" />
+    <Compile Include="GetApplicantsResponse.cs" />
+    <Compile Include="Applicant.cs" />
+    <Compile Include="GetAttachmentResponse.cs" />
+    <Compile Include="GetAttachmentsResponse.cs" />
+    <Compile Include="Attachment.cs" />
+    <Compile Include="GetCandidatesResponse.cs" />
+    <Compile Include="Candidate.cs" />
+    <Compile Include="GetCompaniesResponse.cs" />
+    <Compile Include="Company.cs" />
+    <Compile Include="GetCompanyResponse.cs" />
+    <Compile Include="GetContactResponse.cs" />
+    <Compile Include="GetContactsResponse.cs" />
+    <Compile Include="Contact.cs" />
+    <Compile Include="GetJoborderResponse.cs" />
+    <Compile Include="Joborder.cs" />
+    <Compile Include="GetJobordersResponse.cs" />
+    <Compile Include="List.cs" />
+    <Compile Include="GetListsResponse.cs" />
+    <Compile Include="GetMagicPreviewResponse.cs" />
+    <Compile Include="Pipeline.cs" />
+    <Compile Include="GetPipelinesResponse.cs" />
+    <Compile Include="GetPublicJobordersResponse.cs" />
+    <Compile Include="PublicJoborder.cs" />
+    <Compile Include="GetResumeResponse.cs" />
+    <Compile Include="SearchResponse.cs" />
+    <Compile Include="SearchItem.cs" />
+    <Compile Include="SetStatusResponse.cs" />
+    <Compile Include="UpdateCandidateResponse.cs" />
+    <Compile Include="UpdateCandidateRequest.cs" />
+    <Compile Include="UpdateCompanyRequest.cs" />
+    <Compile Include="UpdateCompanyResponse.cs" />
+    <Compile Include="UpdateContactRequest.cs" />
+    <Compile Include="UpdateContactResponse.cs" />
+    <Compile Include="UpdateJoborderRequest.cs" />
+    <Compile Include="UpdateJoborderResponse.cs" />
+    <Compile Include="Task.cs" />
+    <Compile Include="GetTasksResponse.cs" />
+    <Compile Include="Status.cs" />
+    <Compile Include="GetStatusesResponse.cs" />
+    <Compile Include="GetApplicationsResponse.cs" />
+    <Compile Include="Application.cs" />
+    <Compile Include="JoborderApplication.cs" />
+    <Compile Include="JoborderApplicationQuestion.cs" />
+    <Compile Include="GetJoborderApplicationsResponse.cs" />
+    <Compile Include="Error.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
