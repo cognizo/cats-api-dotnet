@@ -86,11 +86,16 @@ namespace CATS
         
         protected override void ParseResponse(XmlDocument xml)
         {
-            XmlNode item = xml.SelectSingleNode("/response");
-            
+            XmlNode item = xml.SelectSingleNode("/response/item");
+
+            if (item == null)
+            {
+                return;
+            }
+
             Int32.TryParse(item.SelectSingleNode("id").InnerText, out this.id);         
             this.name = item.SelectSingleNode("name/base").InnerText + "." + 
-                xml.SelectSingleNode("name/extension").InnerText;
+                item.SelectSingleNode("name/extension").InnerText;
             Int32.TryParse(item.SelectSingleNode("size").InnerText, out this.size);         
             this.md5Sum = item.SelectSingleNode("md5sum").InnerText;
             this.isResume = CATSApi.StringToBool(item.SelectSingleNode("is_resume").InnerText);

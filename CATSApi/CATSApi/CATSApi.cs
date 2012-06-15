@@ -114,7 +114,7 @@ namespace CATS
             this.TransactionCode = transactionCode;
         }
 
-        public string MakeRequest(string function, Dictionary<string, string> data = null, List<string> files = null)
+        public string MakeRequest(string function, Dictionary<string, string> data = null, Dictionary<string, string> files = null)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(
                 "https://" + this.Subdomain + "." + this.Domain + "/api/" + function
@@ -158,22 +158,18 @@ namespace CATS
                 string headerTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\n Content-Type: application/octet-stream\r\n\r\n";
 
                 int counter = 1;
-                foreach (string file in files)
+                foreach (KeyValuePair<string, string> entry in files)
                 {
                     string header = "";
                     if (files.Count == 1)
                     {
-                        header = string.Format(headerTemplate, "file", file);
-                    }
-                    else
-                    {
-                        header = string.Format(headerTemplate, "file_" + counter, file);
+                        header = string.Format(headerTemplate, entry.Key, entry.Value);
                     }
 
                     byte[] headerBytes = System.Text.Encoding.UTF8.GetBytes(header);
                     requestStream.Write(headerBytes, 0, headerBytes.Length);
 
-                    FileStream fileStream = new FileStream(file, FileMode.Open, FileAccess.Read);
+                    FileStream fileStream = new FileStream(entry.Value, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                     byte[] buffer = new byte[4096];
                     int bytesRead = 0;
                     while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
@@ -275,8 +271,8 @@ namespace CATS
             data["data_type"] = CamelCaseToUnderscore(Enum.GetName(typeof(AttachmentDataType), dataType));
             data["id"] = id.ToString();
 
-            List<string> files = new List<string>();
-            files.Add(file);
+            Dictionary<string, string> files = new Dictionary<string, string>();
+            files.Add("file", file);
 
             data["is_resume"] = isResume.ToString().ToLower();
 
@@ -340,11 +336,11 @@ namespace CATS
             }           
             data["parse_resume"] = request.ParseResume.ToString().ToLower();
             data["on_duplicate"] = CamelCaseToUnderscore(Enum.GetName(typeof(OnDuplicateAction), request.OnDuplicate));
-            
-            List<string> files = new List<string>();
+
+            Dictionary<string, string> files = new Dictionary<string, string>();            
             if (request.Resume != String.Empty)
-            {
-                files.Add(request.Resume);
+            {                
+                files.Add("resume", request.Resume);
             }               
             
             AddCandidateResponse response = new AddCandidateResponse(
@@ -461,9 +457,17 @@ namespace CATS
                 data["date_created"] = DateTimeToUnixTimestamp(dateCreated);
             }
             data["is_resume"] = isResume.ToString().ToLower();
-            
+
+            Dictionary<string, string> requestFiles = new Dictionary<string, string>();
+            int counter = 1;
+            foreach (string file in files)
+            {
+                requestFiles.Add("file" + counter.ToString(), file);
+                counter++;
+            }
+
             AddEmailActivityResponse response = new AddEmailActivityResponse(
-                MakeRequest("add_email_activity", data, files)
+                MakeRequest("add_email_activity", data, requestFiles)
             );
             return response;
         }
@@ -909,8 +913,8 @@ namespace CATS
             Dictionary<string, string> data = new Dictionary<string, string>();
             data["guid"] = guid;
 
-            List<string> files = new List<string>();
-            files.Add(file);            
+            Dictionary<string, string> files = new Dictionary<string, string>();
+            files.Add("file", file);
 
             UpdateAttachmentResponse response = new UpdateAttachmentResponse(
                 MakeRequest("update_attachment", data, files)
@@ -981,11 +985,11 @@ namespace CATS
             {
                 data["country"] = request.Country.ToString();
             }
-            
-            List<string> files = new List<string>();
+
+            Dictionary<string, string> files = new Dictionary<string, string>();            
             if (request.File != String.Empty)
             {
-                files.Add(request.File);
+                files.Add("file", request.File);
             }
             
             UpdateCandidateResponse response = new UpdateCandidateResponse(
@@ -1033,11 +1037,11 @@ namespace CATS
             {
                 data["country"] = request.Country.ToString();
             }
-            
-            List<string> files = new List<string>();
+
+            Dictionary<string, string> files = new Dictionary<string, string>();            
             if (request.File != String.Empty)
             {
-                files.Add(request.File);
+                files.Add("file", request.File);
             }
             
             UpdateCompanyResponse response = new UpdateCompanyResponse(
@@ -1103,11 +1107,11 @@ namespace CATS
             {
                 data["country"] = request.Country.ToString();
             }
-            
-            List<string> files = new List<string>();
+
+            Dictionary<string, string> files = new Dictionary<string, string>();            
             if (request.File != String.Empty)
             {
-                files.Add(request.File);
+                files.Add("file", request.File);
             }
             
             UpdateContactResponse response = new UpdateContactResponse(
@@ -1209,11 +1213,11 @@ namespace CATS
             {
                 data["country"] = request.Country.ToString();
             }
-            
-            List<string> files = new List<string>();
+
+            Dictionary<string, string> files = new Dictionary<string, string>();            
             if (request.File != String.Empty)
             {
-                files.Add(request.File);
+                files.Add("file", request.File);
             }
             
             UpdateJoborderResponse response = new UpdateJoborderResponse(
