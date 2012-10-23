@@ -36,7 +36,13 @@ namespace CATS
         {
             get { return this.id; }
         }
-        
+
+        private string guid = String.Empty;
+        public string Guid
+        {
+            get { return this.guid; }
+        }
+
         private string name = String.Empty;
         public string Name
         {
@@ -72,6 +78,7 @@ namespace CATS
             Int32.TryParse(xml.SelectSingleNode("id").InnerText, out this.id);          
             this.name = xml.SelectSingleNode("name/base").InnerText + "." + 
                 xml.SelectSingleNode("name/extension").InnerText;
+            this.guid = xml.SelectSingleNode("guid").InnerText;
             Int32.TryParse(xml.SelectSingleNode("size").InnerText, out this.size);          
             this.md5Sum = xml.SelectSingleNode("md5sum").InnerText;
             this.isResume = CATSApi.StringToBool(xml.SelectSingleNode("is_resume").InnerText);
