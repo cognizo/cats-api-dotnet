@@ -36,7 +36,37 @@ namespace CATS
         {
             get { return this.id; }
         }
-        
+
+        private string firstName = String.Empty;
+        public string FirstName
+        {
+            get { return this.firstName; }
+        }
+
+        private string lastName = String.Empty;
+        public string LastName
+        {
+            get { return this.lastName; }
+        }
+
+        private int attachmentId = -1;
+        public int AttachmentId
+        {
+            get { return this.attachmentId; }
+        }
+
+        private string attachmentGuid = String.Empty;
+        public string AttachmentGuid
+        {
+            get { return this.attachmentGuid; }
+        }
+
+        private string attachmentFileName = String.Empty;
+        public string AttachmentFileName
+        {
+            get { return this.attachmentFileName; }
+        }
+
         public AddCandidateResponse(string xml)
             : base(xml)
         {
@@ -44,8 +74,13 @@ namespace CATS
         
         protected override void ParseResponse(XmlDocument xml)
         {
-            Int32.TryParse(xml.SelectSingleNode("/response/id").InnerText, out this.id);            
-            
+            Int32.TryParse(xml.SelectSingleNode("/response/id").InnerText, out this.id);
+            this.firstName = xml.SelectSingleNode("/response/first_name").InnerText;
+            this.lastName = xml.SelectSingleNode("/response/last_name").InnerText;
+            Int32.TryParse(xml.SelectSingleNode("/response/attachment_id").InnerText, out this.attachmentId);
+            this.attachmentGuid = xml.SelectSingleNode("/response/attachment_guid").InnerText;
+            this.attachmentFileName = xml.SelectSingleNode("/response/attachment_file_name").InnerText;
+
             base.ParseResponse(xml);
         }       
     }
