@@ -44,7 +44,7 @@ namespace CATS
 
         protected override void ParseResponse(XmlDocument xml)
         {
-            this.guid = xml.SelectSingleNode("guid").InnerText;
+            this.guid = xml.SelectSingleNode("/response/guid").InnerText;
             
             base.ParseResponse(xml);
         }
