@@ -31,6 +31,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Xml;
+using Newtonsoft.Json;
 
 namespace CATS
 {
@@ -872,6 +873,22 @@ namespace CATS
             data["sort_direction"] = CamelCaseToUnderscore(Enum.GetName(typeof(SortDirection), sortDirection));         
 
             GetTasksResponse response = new GetTasksResponse(MakeRequest("get_tasks", data));
+            return response;
+        }
+
+        public GetTranslationsResponse GetTranslations(List<string> strings, string language = "")
+        {
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            data["strings"] = JsonConvert.SerializeObject(strings);
+            data["language"] = language;
+
+            GetTranslationsResponse response = new GetTranslationsResponse(MakeRequest("get_translations", data));
+            return response;
+        }
+
+        public GetUserLanguageResponse GetUserLanguage()
+        {
+            GetUserLanguageResponse response = new GetUserLanguageResponse(MakeRequest("get_user_language"));
             return response;
         }
         
