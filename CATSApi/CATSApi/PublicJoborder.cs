@@ -211,7 +211,7 @@ namespace CATS
             Int32.TryParse(xml.SelectSingleNode("owner").InnerText, out this.owner);
             this.clientJobId = xml.SelectSingleNode("client_job_id").InnerText;
             this.title = xml.SelectSingleNode("title").InnerText;
-            this.description = xml.SelectSingleNode("title").InnerText;
+            this.description = xml.SelectSingleNode("description").InnerText;
             this.notes = xml.SelectSingleNode("notes").InnerText;
             switch (xml.SelectSingleNode("type").InnerText)
             {
